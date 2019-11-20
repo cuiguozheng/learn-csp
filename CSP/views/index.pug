@@ -1,0 +1,60 @@
+extends layout
+
+block meta
+	//- meta(http-equiv="content-security-policy", content="script-src 'self';")
+
+block content
+	p 是一个附加的安全层，有助于检测和缓解某些类型的攻击，包括跨站点脚本（XSS）和数据注入攻击。这些攻击用于从数据窃取到网站污损或恶意软件分发的所有事情
+	p 不支持CSP的浏览器完全忽略它，像往常一样运行，默认为Web内容的标准同源策略
+	h2 两种CSP属性
+	ol
+		li <code>Content-Security-Policy: "策略"</code>
+		li <code>Content-Security-Policy-Report-Only: "策略"</code>
+		li 两者区别：前者会阻止未满足条件的静态资源加载；后者正常加载只会上报（后者不支持meta标签中使用，只能用在Reponse Headers）
+		li 两者同时存在，则两个策略都会得到遵守，取并集
+	h2 两种CSP引入方式
+	ol
+		li Response Headers
+		li meta标签（<code>&#60;meta http-equiv="Content-Security-Policy" content="策略"&#62;</code>）
+	h2 <a href="/startCSP">启用CSP</a>
+	h2 使用CSP
+	h3 语法（内容安全策略: <code>default-src 'self' *.trusted.com; img-src *;</code>）
+	ul
+		li <code>'self'</code>（关键字注意引号）意思是：网站本身（不包括其他子域名）
+		li <code>*</code>通配符
+		li 每个策略都可写多个筛选条件
+	h3 关键字
+	ul
+		li <a href="/cspKeyword/self"><code>'self'</code>：指提供受保护文档的来源，仅包括相同的URL方案和端口号</a>
+		li <a href="/cspKeyword/unsafeEval"><code>'unsafe-eval'</code>：允许使用eval()</a>
+		li <a href="cspKeyword/unsafeHashes"><code>'unsafe-hashes'</code>MDN上说：只允许内联事件处理程序，而不允许内联&#60;script&#62;元素或javascript:URL</a>
+		li <a href="cspKeyword/unsafeInline"><code>'unsafe-inline'</code>：允许使用内联资源，例如内联&#60;script&#62;元素，javascript:URL，内联事件处理程序和内联&#60;style&#62;元素</a>
+		li <a href="cspKeyword/none"><code>'none'</code>：指空集；也就是说，没有URL匹配</a>
+		li <a href="cspKeyword/nonceBase64"><code>'nonce-&#60;base64-value&#62;'</code>：使用加密随机数（使用一次的数字）的特定内联脚本的白名单</a>
+		li <code>'&#60;hash-algorithm&#62;-&#60;base64-value&#62;'</code>
+		li <a href="cspKeyword/strictDynamic"><code>'strict-dynamic'</code>：强制执行hash或nonce配置</a>
+	ul
+	h3 启用报错上报（<code>report-uri &#60;uri&#62; &#60;uri&#62;；</code>）
+	ul
+		li 不支持meta标签中使用，在Response Headers中都可使用
+		li Content-Security-Policy-Report-Only 必须有<code>report-uri</code>
+		li 上报为post请求，支持上报接口CORs跨域
+	h3 上报参数
+	ul
+		li <code onclick="location.href='//luna.58.com/m/activity?temid=SETAD.huangye_new&city=bj'">blocked-uri</code>：内容安全策略阻止加载的资源的URI
+		li <code>disposition</code>："enforce"或"reporting"
+		li <code>document-uri</code>：发生违规的文档的URI
+		li <code>effective-directive</code>：违反的指令，例：script-src-elem，style-src-elem，style-src-attr(直接作用在dom上)
+		li <code>original-policy</code>：HTTP标头指定的原始策略
+		li <code>referrer</code>：发生违规的文档的引荐来源
+		li <code>script-sample</code>：内联脚本，事件处理程序或样式中引起冲突的前40个字符
+		li <code>status-code</code>：状态码
+		li <code>violated-directive</code>：违反的策略部分的名称
+	h3 iframe sandbox
+	ul
+		li <code>allow-forms</code>： 允许进行提交表单
+		li <code>allow-scripts</code>： 允许执行脚本
+		li <code>allow-same-origin</code>： 允许同域请求
+		li <code>allow-top-navigation</code>： 允许iframe控制top进行页面跳转
+		li <code>allow-popups</code>： 允许iframe弹出新窗口
+	h3 <a href="result">得出结论</a>

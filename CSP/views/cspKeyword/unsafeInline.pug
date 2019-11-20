@@ -1,0 +1,9 @@
+extends ../layout
+
+block content
+	button(onclick="handler()") 事件处理
+
+block script
+	script window.incsp = 1;eval('window.incspEval = "incspEval"');function handler(){alert('允许事件处理！')};handler();
+	script(src="//j1.58cdn.com.cn/crop/biz/m/lunaSpecial/js/special_huangye_B_v20191101104831.js")
+	script(src="/javascripts/javascript.js")

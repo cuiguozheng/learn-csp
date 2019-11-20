@@ -1,0 +1,11 @@
+extends ../layout
+
+block content
+	h1 经实践得出结论：允许带有特定的hash值脚本执行
+	//- iframe(src="http://pos.baidu.com/xctm?conwid=414&conhei=125&rdid=4388798&dc=3&exps=113113,110011&psi=e59be4551df2bded4eb6a68a201839a7&di=u4388798&dri=0&dis=0&dai=2&ps=8546x4&coa=id%3Du4388798&enu=encoding&dcb=___adblockplus_&dtm=HTML_POST&dvi=0.0&dci=-1&dpt=none&tsr=0&tpr=1573042456989&ti=%E3%80%9058%E5%90%8C%E5%9F%8E%E3%80%91%E5%8C%97%E4%BA%AC%E8%&ari=2&dbv=0&drs=4&pcs=414x736&pss=414x9320&cfv=0&cpl=0&chi=7&cce=true&cec=UTF-8&tlm=1573042457&prot=2&rw=414&ltu=https%3A%2F%2Fm.58.com%2Fbj%2Fjiazhuang%2F%3FPGTID%3D0d210a62-0000-1eb0-3892-76992e7e6c09%26ClickID%3D3&ltr=https%3A%2F%2Fm.58.com%2Fbj%2Fhuangye.shtml%3F58hm%3Dm_home_bendishenghuo_new%2658cid%3D1%26from%3Dhome_huangye%26PGTID%3D0d100000-0000-1f19-6168-de0bfe1f6cd9%26ClickID%3D3&ecd=1&uc=414x736&pis=-1x-1&sr=414x736&tcn=1573042457&qn=85e31484d603c213&tt=1573042456977.97.97.97",width="414",height="125",align="center,center",vspace="0",hspace="0",marginwidth="0",marginheight="0",scrolling="no",frameborder="0",style="border:0;vertical-align:bottom;margin:0;width:414px;height:125px",allowtransparency="true")
+	button(onclick="handler()") 事件处理
+
+block script
+	//- script(src="//j1.58cdn.com.cn/crop/biz/m/lunaSpecial/js/special_huangye_B_v20191101104831.js")
+	script(integrity="sha256-gAxsES+Arx9AWDa7g44V6AjEfsAUbdbWMw9QCS5khDg=") function handler(){alert('允许事件处理！')};window.incsp = 1;eval('window.incspEval = "incspEval"');
+	//- script(src="/javascripts/javascript.js")

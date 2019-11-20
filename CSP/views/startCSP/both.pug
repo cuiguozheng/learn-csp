@@ -1,0 +1,15 @@
+extends ../layout
+
+block meta
+	meta(http-equiv="content-security-policy", content="img-src pic2.58cdn.com.cn")
+
+block style
+	link(href="//c.58cdn.com.cn/crop/biz/m/lunaSpecial/css/special_fangchan_v20191101104831.css", rel="stylesheet")
+
+block content
+	iframe(src="//not-example.com/")
+	img(src="//pic2.58cdn.com.cn/nowater/jianku/n_639c99ee508540a7be0b727ac418b150.png")
+
+block script
+	script eval('window.a = 1;')
+	script(src="//j1.58cdn.com.cn/crop/biz/m/lunaSpecial/js/special_huangye_B_v20191101104831.js")
